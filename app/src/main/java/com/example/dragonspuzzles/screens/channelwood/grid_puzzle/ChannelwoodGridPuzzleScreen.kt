@@ -18,7 +18,7 @@ import com.example.dragonspuzzles.ui.theme.DragonsPuzzlesTheme
 @Composable
 fun ChannelwoodGridPuzzleScreen(
     popUpScreen: () -> Unit,
-    viewModel: ChannelwoodGridPuzzleViewModel = ChannelwoodGridPuzzleViewModel()
+    viewModel: ChannelwoodGridPuzzleViewModel
 ) {
     ChannelwoodGridPuzzleScreenContent(popUpScreen)
 }
@@ -50,6 +50,6 @@ fun ChannelwoodGridPuzzleScreenContent(popUpScreen: () -> Unit) {
 @Composable
 fun ChannelwoodGridPuzzleScreenPreview() {
     DragonsPuzzlesTheme {
-        ChannelwoodGridPuzzleScreen({ })
+        ChannelwoodGridPuzzleScreenContent({ })
     }
 }

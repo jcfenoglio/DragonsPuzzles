@@ -4,12 +4,15 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.dragonspuzzles.screens.channelwood.grid_puzzle.ChannelwoodGridPuzzleScreen
+import com.example.dragonspuzzles.screens.channelwood.grid_puzzle.ChannelwoodGridPuzzleViewModel
 import com.example.dragonspuzzles.screens.channelwood.tube_puzzle.ChannelwoodTubePuzzleScreen
+import com.example.dragonspuzzles.screens.channelwood.tube_puzzle.ChannelwoodTubePuzzleViewModel
 import com.example.dragonspuzzles.screens.puzzle_list.PuzzleListScreen
 import com.example.dragonspuzzles.ui.theme.DragonsPuzzlesTheme
 
@@ -35,11 +38,11 @@ fun NavGraphBuilder.dragonsPuzzlesGraph(appState: DragonsPuzzlesAppState) {
     }
 
     composable(CHANNELWOOD_TUBE_PUZZLE_SCREEN) {
-        ChannelwoodTubePuzzleScreen(popUpScreen = { appState.popUp() })
+        ChannelwoodTubePuzzleScreen(popUpScreen = { appState.popUp() }, viewModel<ChannelwoodTubePuzzleViewModel>())
     }
 
     composable(CHANNELWOOD_GRID_PUZZLE_SCREEN) {
-        ChannelwoodGridPuzzleScreen(popUpScreen = { appState.popUp() })
+        ChannelwoodGridPuzzleScreen(popUpScreen = { appState.popUp() }, viewModel<ChannelwoodGridPuzzleViewModel>())
     }
 }
 

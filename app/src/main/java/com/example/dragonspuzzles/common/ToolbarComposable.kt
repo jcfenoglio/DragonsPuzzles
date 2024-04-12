@@ -26,7 +26,7 @@ fun BasicToolbar(title: String) {
 @Composable
 fun BackToolbar(title: String, popUpScreen: () -> Unit) {
     TopAppBar(
-        title = { Text(text = title) },
+        title = { Text(text = title, color = MaterialTheme.colorScheme.onPrimary) },
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.primary),
         navigationIcon = {
