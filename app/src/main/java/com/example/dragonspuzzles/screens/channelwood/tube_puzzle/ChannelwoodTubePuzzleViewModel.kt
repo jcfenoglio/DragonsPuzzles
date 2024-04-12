@@ -77,9 +77,9 @@ class ChannelwoodTubePuzzleViewModel : ViewModel() {
 
     fun resetPuzzle() {
         puzzleState = puzzleState.copy(
-            top = ChannelwoodSymbol.MOONMOUNTAIN,
-            topMid = ChannelwoodSymbol.SEMICIRCLE,
-            bottomMid = ChannelwoodSymbol.DOWNUP,
+            top = ChannelwoodSymbol.CROSS,
+            topMid = ChannelwoodSymbol.CROSS,
+            bottomMid = ChannelwoodSymbol.CROSS,
             bottom = ChannelwoodSymbol.CROSS,
             completed = false
         )
