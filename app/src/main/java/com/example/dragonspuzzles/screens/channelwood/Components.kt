@@ -1,42 +1,36 @@
 package com.example.dragonspuzzles.screens.channelwood
 
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithCache
-import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Matrix
-import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.asComposePath
 import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Density
-import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.graphics.shapes.CornerRounding
 import androidx.graphics.shapes.RoundedPolygon
 import androidx.graphics.shapes.toPath
-import androidx.graphics.shapes.transformed
 import com.example.dragonspuzzles.ui.theme.DragonsPuzzlesTheme
-import kotlin.math.max
 
 @Composable
-fun gridBase() {
+fun GridBase() {
     val color = MaterialTheme.colorScheme.onPrimaryContainer
     Canvas(
         modifier = Modifier
@@ -75,7 +69,21 @@ fun gridBase() {
 }
 
 @Composable
-fun semicircle(modifier: Modifier) {
+fun ChannelwoodSymbolBox(symbol: ChannelwoodSymbol, modifier: Modifier) {
+    Box (modifier = modifier,
+        contentAlignment = Alignment.Center) {
+        when (symbol) {
+            ChannelwoodSymbol.SEMICIRCLE -> Semicircle(modifier)
+            ChannelwoodSymbol.CYANARC -> CyanArc(modifier)
+            ChannelwoodSymbol.CROSS -> Cross(modifier)
+            ChannelwoodSymbol.DOWNUP -> DownUp(modifier)
+            ChannelwoodSymbol.MOONMOUNTAIN -> MoonMountain(modifier)
+        }
+    }
+}
+
+@Composable
+fun Semicircle(modifier: Modifier) {
     val color = MaterialTheme.colorScheme.onTertiaryContainer
     Canvas(
         modifier = modifier
@@ -90,7 +98,7 @@ fun semicircle(modifier: Modifier) {
 }
 
 @Composable
-fun cyanArc(modifier: Modifier) {
+fun CyanArc(modifier: Modifier) {
     val color = MaterialTheme.colorScheme.onTertiaryContainer
     val background = MaterialTheme.colorScheme.tertiaryContainer
     Canvas(
@@ -116,7 +124,7 @@ fun cyanArc(modifier: Modifier) {
 }
 
 @Composable
-fun cross(modifier: Modifier) {
+fun Cross(modifier: Modifier) {
     val color = MaterialTheme.colorScheme.onTertiaryContainer
     Canvas(
         modifier = modifier
@@ -137,7 +145,7 @@ fun cross(modifier: Modifier) {
 }
 
 @Composable
-fun downUp(modifier: Modifier) {
+fun DownUp(modifier: Modifier) {
     val color = MaterialTheme.colorScheme.onTertiaryContainer
     Canvas(
         modifier = modifier
@@ -170,7 +178,7 @@ fun downUp(modifier: Modifier) {
 }
 
 @Composable
-fun moonMountain(modifier: Modifier) {
+fun MoonMountain(modifier: Modifier) {
     val color = MaterialTheme.colorScheme.onTertiaryContainer
     Canvas(
         modifier = modifier
@@ -260,17 +268,29 @@ fun RightFacingButton(modifier: Modifier) {
     )
 }
 
+@Composable
+fun ResetButton(onResetClick: () -> Unit) {
+    Button(
+        onClick = { onResetClick() },
+        modifier = Modifier
+            .fillMaxWidth()
+            .aspectRatio(4f)
+            .padding(5.dp)
+    ){
+        Text(text = "Reset Puzzle", fontSize = 25.sp)
+    }
+}
 
 @Preview(showBackground = true)
 @Composable
 fun Previews() {
     DragonsPuzzlesTheme {
         Column(modifier = Modifier.fillMaxSize()) {
-            semicircle(Modifier.size(60.dp))
-            cyanArc(Modifier.size(60.dp))
-            cross(Modifier.size(60.dp))
-            downUp(Modifier.size(60.dp))
-            moonMountain(Modifier.size(60.dp))
+            Semicircle(Modifier.size(60.dp))
+            CyanArc(Modifier.size(60.dp))
+            Cross(Modifier.size(60.dp))
+            DownUp(Modifier.size(60.dp))
+            MoonMountain(Modifier.size(60.dp))
             LeftFacingButton(Modifier.size(60.dp))
             RightFacingButton(Modifier.size(60.dp))
         }

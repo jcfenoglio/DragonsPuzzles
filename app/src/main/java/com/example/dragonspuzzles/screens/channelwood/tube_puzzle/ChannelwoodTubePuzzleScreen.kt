@@ -7,31 +7,23 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.dragonspuzzles.common.BackToolbar
 import com.example.dragonspuzzles.screens.channelwood.ChannelwoodSymbol
+import com.example.dragonspuzzles.screens.channelwood.ChannelwoodSymbolBox
 import com.example.dragonspuzzles.screens.channelwood.LeftFacingButton
+import com.example.dragonspuzzles.screens.channelwood.ResetButton
 import com.example.dragonspuzzles.screens.channelwood.RightFacingButton
-import com.example.dragonspuzzles.screens.channelwood.cross
-import com.example.dragonspuzzles.screens.channelwood.cyanArc
-import com.example.dragonspuzzles.screens.channelwood.downUp
-import com.example.dragonspuzzles.screens.channelwood.moonMountain
-import com.example.dragonspuzzles.screens.channelwood.semicircle
 import com.example.dragonspuzzles.ui.theme.DragonsPuzzlesTheme
 
 @Composable
@@ -104,7 +96,7 @@ fun ChannelwoodTubePuzzleScreenContent(
                             strokeWidth = 15f
                         )
                     }
-                }){ChannelwoodTubeRing(top, Modifier.size(100.dp))}
+                }){ChannelwoodSymbolBox(top, Modifier.size(100.dp))}
             RightFacingButton(
                 modifier = Modifier
                     .padding(5.dp)
@@ -136,7 +128,7 @@ fun ChannelwoodTubePuzzleScreenContent(
                         )
                     }
                 })
-            {ChannelwoodTubeRing(topMid, Modifier.size(100.dp))}
+            {ChannelwoodSymbolBox(topMid, Modifier.size(100.dp))}
             RightFacingButton(
                 modifier = Modifier
                     .padding(5.dp)
@@ -167,7 +159,7 @@ fun ChannelwoodTubePuzzleScreenContent(
                             strokeWidth = 15f
                         )
                     }
-                }){ChannelwoodTubeRing(bottomMid, Modifier.size(100.dp))}
+                }){ChannelwoodSymbolBox(bottomMid, Modifier.size(100.dp))}
             RightFacingButton(
                 modifier = Modifier
                     .padding(5.dp)
@@ -210,7 +202,7 @@ fun ChannelwoodTubePuzzleScreenContent(
                             strokeWidth = 15f
                         )
                     }
-                }){ChannelwoodTubeRing(bottom, Modifier.size(100.dp))}
+                }){ChannelwoodSymbolBox(bottom, Modifier.size(100.dp))}
             RightFacingButton(
                 modifier = Modifier
                     .padding(5.dp)
@@ -223,30 +215,10 @@ fun ChannelwoodTubePuzzleScreenContent(
             .fillMaxWidth()
             .padding(80.dp))
 
-        Button(
-            onClick = { onResetClick() },
-            modifier = Modifier
-                .fillMaxWidth()
-                .aspectRatio(4f)
-        ){
-            Text(text = "Reset Puzzle", fontSize = 25.sp)
-        }
+        ResetButton(onResetClick)
     }
 }
 
-@Composable
-fun ChannelwoodTubeRing(symbol: ChannelwoodSymbol, modifier: Modifier) {
-    Box (modifier = Modifier,
-        contentAlignment = Alignment.Center) {
-        when (symbol) {
-            ChannelwoodSymbol.SEMICIRCLE -> semicircle(modifier)
-            ChannelwoodSymbol.CYANARC -> cyanArc(modifier)
-            ChannelwoodSymbol.CROSS -> cross(modifier)
-            ChannelwoodSymbol.DOWNUP -> downUp(modifier)
-            ChannelwoodSymbol.MOONMOUNTAIN -> moonMountain(modifier)
-        }
-    }
-}
 
 @Preview(showBackground = true)
 @Composable
